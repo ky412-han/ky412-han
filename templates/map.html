@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지도 검색 및 길찾기</title>
+     <!-- Python에서 전달된 API 키를 사용 -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ kakao_api_key }}"></script>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        #chat-container {
+          width: 400px;
+          max-width: 90%;
+          margin: 20px auto;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          overflow: hidden;
+        }
+        #chat-output {
+          height: 300px;
+          overflow-y: auto;
+          padding: 10px;
+          background: #f9f9f9;
+        }
+        #chat-input {
+          display: flex;
+          border-top: 1px solid #ccc;
+        }
+        #chat-input input {
+          flex: 1;
+          border: none;
+          padding: 10px;
+        }
+        #chat-input button {
+          padding: 10px;
+          border: none;
+          background: #007BFF;
+          color: white;
+          cursor: pointer;
+        }
+        #map-container {
+          width: 100%;
+          height: 400px;
+          margin-top: 10px;
+          display: none; /* 기본적으로 숨김 */
+        }
+      </style>
+    </head>
+    <body>
+    
+    <div id="chat-container">
+      <div id="chat-output"></div>
+      <div id="chat-input">
+        <input type="text" id="user-input" placeholder="여행 정보를 입력하세요..." />
+        <button onclick="handleChat()">전송</button>
+      </div>
+    </div>
+    
+    <div id="map-container">
+      <div id="map" style="width:100%;height:100%;"></div>
+    </div>
+    
+    <script>
+      var locations = [
+        { name: "경복궁", lat: 37.579617, lng: 126.977041 },
+        { name: "남산서울타워", lat: 37.551169, lng: 126.988227 },
+        { name: "인사동", lat: 37.571633, lng: 126.985402 },
+        { name: "북촌 한옥마을", lat: 37.582604, lng: 126.983243 },
+        { name: "명동", lat: 37.560989, lng: 126.985302 }
+      ];
+    
+      var chatOutput = document.getElementById('chat-output');
+      var mapContainer = document.getElementById('map-container');
+      var userInput = document.getElementById('user-input');
+    
+      function handleChat() {
+        var input = userInput.value.trim();
+        if (!input) return;
+    
+        appendMessage("user", input);
+        userInput.value = "";
+    
+        // 여행 데이터 요청 처리
+        if (input.includes("서울") && input.includes("여행")) {
+          appendMessage("bot", "최적 경로를 계산 중입니다...");
+          displayMap(locations);
+        } else {
+          appendMessage("bot", "여행 정보를 입력해주세요.");
+        }
+      }
+    
+      function appendMessage(sender, message) {
+        var msg = document.createElement('div');
+        msg.textContent = message;
+        msg.style.margin = "5px 0";
+        msg.style.padding = "10px";
+        msg.style.borderRadius = "5px";
+        msg.style.maxWidth = "70%";
+    
+        if (sender === "user") {
+          msg.style.alignSelf = "flex-end";
+          msg.style.backgroundColor = "#007BFF";
+          msg.style.color = "white";
+        } else {
+          msg.style.alignSelf = "flex-start";
+          msg.style.backgroundColor = "#f1f1f1";
+          msg.style.color = "#333";
+        }
+    
+        chatOutput.appendChild(msg);
+        chatOutput.scrollTop = chatOutput.scrollHeight; // 스크롤을 아래로 이동
+      }
+    
+      function displayMap(locations) {
+        mapContainer.style.display = "block";
+    
+        var map = new kakao.maps.Map(document.getElementById('map'), {
+          center: new kakao.maps.LatLng(locations[0].lat, locations[0].lng),
+          level: 5
+        });
+    
+        var bounds = new kakao.maps.LatLngBounds();
+        var linePath = [];
+    
+        locations.forEach(function(location) {
+          var markerPosition = new kakao.maps.LatLng(location.lat, location.lng);
+          new kakao.maps.Marker({
+            position: markerPosition,
+            map: map,
+            title: location.name
+          });
+    
+          linePath.push(markerPosition);
+          bounds.extend(markerPosition);
+        });
+    
+        var polyline = new kakao.maps.Polyline({
+          path: linePath,
+          strokeWeight: 5,
+          strokeColor: 'blue',
+          strokeOpacity: 0.7,
+          strokeStyle: 'solid'
+        });
+    
+        polyline.setMap(map);
+        map.setBounds(bounds);
+    
+        appendMessage("bot", "지도가 준비되었습니다. 확인해보세요!");
+      }
+  </script>
+</body>
+</html>

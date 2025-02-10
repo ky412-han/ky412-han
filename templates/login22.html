@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <title>로그인</title>
+</head>
+<body class="gradient-custom">
+  <!-- 상단바 -->
+  <header>
+    <div id="logo">로고</div>
+    <nav>
+      <ul>
+        <li><a href="/">Main</a></li>
+        <li><a href="/festival">축제정보</a></li>
+        <li><a href="/aischedule">Ai 일정추천</a></li>
+        <li><a href="/aichat">AI(챗봇)가이드</a></li>
+      </ul>
+    </nav>
+    <div id="login">
+      <a href="/login">로그인</a>
+    </div>
+  </header>
+
+  <section class="d-flex vh-100">
+    <div class="container-fluid row justify-content-center align-content-center">
+      <div class="card bg-dark login-card">
+        <div class="card-body text-center">
+          <h2 class="text-white">LOGIN</h2>
+          <p class="text-white-50 mt-2 mb-5">서비스를 사용하려면 로그인을 해주세요!</p>
+
+          <!-- 구글 로그인 버튼 -->
+          <form action="/auth/login" method="get">
+            <button type="submit" class="btn btn-secondary btn-md">Google로 로그인</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
+

@@ -1,30 +1,10 @@
-# 👋 Hello, I'm [ky412-han]!
+## python fastapi + jinja templates 여행 가이드 백엔드
 
-## 🚀 About Me
-- 💻 Passionate about coding and technology
-- 🔭 Currently working on [AI Travel Planner]
-- 🌱 Learning [python, ai, java]
-- 📫 Reach me at: [Your Email or Social Links]
+## Tech Stack
 
-## 🛠 Tech Stack
-![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![Java](https://img.shields.io/badge/-Java-007396?style=flat-square&logo=java&logoColor=white)
-![AI](https://img.shields.io/badge/-Artificial%20Intelligence-FF6F00?style=flat-square&logo=ai&logoColor=white)
-
-
-## 📈 GitHub Stats
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=your-github-username&show_icons=true&theme=light&hide_border=true)
-
-## 📌 Latest Projects
-<!--
-- 🔹 [Project Name 1](#) - Short Description  
-- 🔹 [Project Name 2](#) - Short Description  
-- 🔹 [Project Name 3](#) - Short Description  
--->
----
-
-⭐️ **Let's connect!** 
-<!--
-[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/your-profile)
-✅ 특징:
--->
+|                    | 사용 기술          |
+| ------------------ | ------------------ |
+| **Language**       | ![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python&logoColor=white) |
+| **Framework**      | ![FastAPI](https://img.shields.io/badge/FastAPI-0.95.2-009688?logo=fastapi&logoColor=white) |
+| **Database**       | ![MongoDB](https://img.shields.io/badge/MongoDB-6.0.3-green?logo=mongodb&logoColor=white) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue?logo=postgresql&logoColor=white) |
+| **Etc**            | ![LangChain](https://img.shields.io/badge/LangChain-gray?logo=awesomelists&logoColor=white) |
